@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 15:17:47 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/31 02:44:51 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/31 21:16:59 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,21 +45,16 @@ static int mouse_handler(int button, int x, int y, t_data *d)
 {
 	(void)x;
 	(void)y;
+	
 	if (button == Button4)
 	{
-		d->shift.re = ((x / d->zoom) + d->shift.re) - (x / d->zoom * 1.1);
-		d->shift.im = ((y / d->zoom) + d->shift.im) - (x / d->zoom * 1.1);
+		printf("1here\n");
 		d->zoom *= 1.1;
-		if (d->max_iter < MAX_ITERATIONS)
-			(d->max_iter)++;
 	}
 	else if (button == Button5)
 	{
-		d->shift.re = ((x / d->zoom) + d->shift.re) - (x / d->zoom * 0.9);
-		d->shift.im = ((y / d->zoom) + d->shift.im) - (x / d->zoom * 0.9);
+		printf("2here\n");
 		d->zoom *= 0.9;
-		if (d->max_iter < MIN_ITERATIONS)
-			(d->max_iter)--;
 	}
 	render_image(d);
 	return (0);

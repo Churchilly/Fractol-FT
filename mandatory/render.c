@@ -6,11 +6,12 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 22:40:08 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/31 03:22:55 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/31 21:16:11 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+#include "../minilibx/mlx.h"
 
 t_complex	square_complex(t_complex c) // helper 
 {
@@ -37,7 +38,7 @@ int	render_pixel(t_data *d)
 	d->z.re = 0;
 	d->z.im = 0;
 	i = -1;
-	while ((d->z.re * d->z.re + d->z.im * d->z.im) < 4.0 && ++i < d->max_iter)
+	while ((d->z.re * d->z.re + d->z.im * d->z.im) < 4.0 && ++i < MAX_ITERATIONS)
 		d->z = sum_complex(square_complex(d->z), d->c);
 	return (i);
 }
@@ -67,10 +68,11 @@ void	render_image(t_data *d)
 		x = -1;
 		while (++x < WIDTH)
 		{
-			d->c.re = ((x - WIDTH / 2.0) * 4.0 / WIDTH);
-			d->c.im = ((y - HEIGHT / 2.0) * 4.0 / HEIGHT);
+			d->c.re = ((x - d->shift.re) * d->zoom / WIDTH);
+			d->c.im = ((y - d->shift.im) * d->zoom / HEIGHT);
 			trgb = render_pixel(d);
 			put_pixel(x, y, trgb, d);
 		}
 	}
+	mlx_put_image_to_window(d->connection, d->window, d->image, 0, 0);
 }

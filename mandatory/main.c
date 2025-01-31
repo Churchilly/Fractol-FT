@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 01:57:11 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/31 03:25:42 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/31 21:16:06 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,13 @@ static void init_data(t_data *data)
 	data->endian = 0;
 	data->set = NULL_SET;
 	data->color = 0;
-	data->max_iter = MAX_ITERATIONS;
-	data->zoom = 1.0;
+	data->zoom = 4;
 	data->z.re = 0.0;
 	data->z.im = 0.0;
 	data->c.re = 0.0;
 	data->c.im = 0.0;
-	data->shift.re = 0.0;
-	data->shift.im = 0.0;
+	data->shift.re = WIDTH / 2.0;
+	data->shift.im = HEIGHT / 2.0;
 }
 
 static void	init_set(t_data *data, int argc, char **argv)
@@ -104,9 +103,7 @@ int	main(int argc, char **argv)
 	if (data.set == NULL_SET)
 		exit(1); // print usage
 	mlx_setup(&data);
-	printf("%f\n", data.z.re);
 	render_image(&data);
-	mlx_put_image_to_window(data.connection, data.window, data.image, 0, 0);
 	events_setup(&data);
 	mlx_loop(data.connection);
 	return (0);

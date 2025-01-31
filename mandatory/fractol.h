@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 02:13:01 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/31 03:25:23 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/31 20:50:04 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # define HEIGHT 600
 
 # define MAX_ITERATIONS 100
-# define MIN_ITERATIONS 100
 
 typedef struct	s_complex
 {
@@ -40,7 +39,6 @@ typedef struct	s_data
 	int		endian;
 	int			set;
 	int			color;
-	int			max_iter;
 	double		zoom;
 	t_complex	z;
 	t_complex	c;
