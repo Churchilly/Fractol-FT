@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 15:17:47 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/02/04 00:24:18 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/02/04 01:58:11 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	quit(t_data *d)
 	exit(0);
 }
 
-static int key_handler(int key, t_data *d)
+static int	key_handler(int key, t_data *d)
 {
 	if (key == XK_Escape)
 		quit(d);
@@ -41,14 +41,14 @@ static int key_handler(int key, t_data *d)
 	return (0);
 }
 
-static int mouse_handler(int button, int x, int y, t_data *d)
+static int	mouse_handler(int button, int x, int y, t_data *d)
 {
-    double mouse_re;
-    double mouse_im;
-    double zoom_factor;
-	
-    mouse_re = d->min.re + (x * (d->max.re - d->min.re) / WIDTH);
-    mouse_im = d->min.im + (y * (d->max.im - d->min.im) / HEIGHT);
+    double	mouse_re;
+    double	mouse_im;
+    double	zoom_factor;
+
+	mouse_re = d->min.re + (x * (d->max.re - d->min.re) / WIDTH);
+	mouse_im = d->min.im + (y * (d->max.im - d->min.im) / HEIGHT);
     if (button == Button4)
         zoom_factor = 0.7;
     else if (button == Button5)
@@ -60,7 +60,6 @@ static int mouse_handler(int button, int x, int y, t_data *d)
     d->min.im = mouse_im + (d->min.im - mouse_im) * zoom_factor;
     d->max.im = mouse_im + (d->max.im - mouse_im) * zoom_factor;
 	d->zoom *= zoom_factor;
-	printf("%f -- %f -- %f -- %f\n", d->min.re, d->max.re, d->min.im, d->max.im);
 	render_image(d);
 	return (0);
 }
