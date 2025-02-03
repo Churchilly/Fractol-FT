@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 04:27:40 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/02/02 10:09:33 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/02/04 00:02:39 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ void init_data(t_data *data)
 	data->max.im = 0.0;
 	data->shift.re = 0;
 	data->shift.im = 0;
-	data->mouse.re = 0.0;
-	data->mouse.im = 0.0;
 }
 
 static void	init_mandelbrot(t_data *d)

@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 02:13:01 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/02/02 09:53:51 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/02/04 00:02:27 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ typedef struct	s_data
 	t_complex	min;
 	t_complex	max;
 	t_complex	shift;
-	t_complex	mouse;
 }			t_data;
 
 void init_data(t_data *data);
