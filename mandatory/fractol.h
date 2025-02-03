@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 02:13:01 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/02/04 00:02:27 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/02/04 00:16:55 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct	s_data
 	int			set;
 	int			color;
 	int			max_iter;
+	double		zoom;
 	t_complex	z;
 	t_complex	c;
 	t_complex	min;

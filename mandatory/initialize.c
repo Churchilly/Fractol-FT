@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 04:27:40 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/02/04 00:02:39 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/02/04 00:17:40 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void init_data(t_data *data)
 	data->set = NULL_SET;
 	data->color = 0;
 	data->max_iter = 0;
+	data->zoom = 0.0;
 	data->z.re = 0.0;
 	data->z.im = 0.0;
 	data->c.re = 0.0;
@@ -48,6 +49,7 @@ static void	init_mandelbrot(t_data *d)
 	d->min.im = -2.0;
 	d->shift.re = 0.0;
 	d->shift.im = 0.0;
+	d->zoom = 1.0;
 }
 
 static void	init_burningship(t_data *d)

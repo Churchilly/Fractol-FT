@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 15:17:47 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/02/02 10:05:35 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/02/04 00:24:18 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ static int key_handler(int key, t_data *d)
 	if (key == XK_Escape)
 		quit(d);
 	if (key == XK_w || key == XK_Up)
-		d->shift.im -= (0.5);
+		d->shift.im -= (0.75) * d->zoom;
 	if (key == XK_s || key == XK_Down)
-		d->shift.im += (0.5);
+		d->shift.im += (0.75) * d->zoom;
 	if (key == XK_a || key == XK_Left)
-		d->shift.re -= (0.5);
+		d->shift.re -= (0.75) * d->zoom;
 	if (key == XK_d || key == XK_Right)
-		d->shift.re += (0.5);
+		d->shift.re += (0.75) * d->zoom;
 	render_image(d);
 	return (0);
 }
@@ -59,6 +59,7 @@ static int mouse_handler(int button, int x, int y, t_data *d)
     d->max.re = mouse_re + (d->max.re - mouse_re) * zoom_factor;
     d->min.im = mouse_im + (d->min.im - mouse_im) * zoom_factor;
     d->max.im = mouse_im + (d->max.im - mouse_im) * zoom_factor;
+	d->zoom *= zoom_factor;
 	printf("%f -- %f -- %f -- %f\n", d->min.re, d->max.re, d->min.im, d->max.im);
 	render_image(d);
 	return (0);

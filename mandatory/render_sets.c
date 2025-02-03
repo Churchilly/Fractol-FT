@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 05:23:08 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/02/03 19:31:07 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/02/04 00:15:15 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int render_mandelbrot(int x, int y, t_data *d)
 	d->z.re = 0.0;
 	d->z.im = 0.0;
 	d->c.re = (d->min.re + (x * (d->max.re - d->min.re) / WIDTH) + d->shift.re);
-	d->c.im = (d->min.im + (y * (d->max.im - d->min.im) / HEIGHT)  + d->shift.im);
+	d->c.im = (d->min.im + (y * (d->max.im - d->min.im) / HEIGHT) + d->shift.im);
 	sqrt_mag = 0;
 	i = -1;
 	while (sqrt_mag < (4.0) && ++i < d->max_iter)
@@ -50,7 +50,7 @@ int render_mandelbrot(int x, int y, t_data *d)
 	}
 	if (i < d->max_iter)
 	{
-		t = log(log(sqrt_mag) / 2.0) / log(2.0) / log(2.0);
+		t = log(log(sqrt_mag) / 2.0) / log(2.0);
 		i = i + 1 - t;
 	}
 	return (i);
