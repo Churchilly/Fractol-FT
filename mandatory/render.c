@@ -6,42 +6,12 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 22:40:08 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/31 21:16:11 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/02/02 06:17:37 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include "../minilibx/mlx.h"
-
-t_complex	square_complex(t_complex c) // helper 
-{
-	// (a + bi)^2 = a^2 - b^2 + 2abi
-	t_complex	res;
-	
-	res.re = c.re * c.re - c.im * c.im;
-	res.im = 2 * c.re * c.im;
-	return (res);
-}
-
-t_complex	sum_complex(t_complex c1, t_complex c2) //helper
-{
-	t_complex	res;
-	
-	res.im = c1.im + c2.im;
-	res.re = c1.re + c2.re;
-	return (res);
-}
-
-int	render_pixel(t_data *d)
-{
-	int	i;
-	d->z.re = 0;
-	d->z.im = 0;
-	i = -1;
-	while ((d->z.re * d->z.re + d->z.im * d->z.im) < 4.0 && ++i < MAX_ITERATIONS)
-		d->z = sum_complex(square_complex(d->z), d->c);
-	return (i);
-}
 
 static void	put_pixel(int x, int y, int trgb, t_data *d)
 {
@@ -56,10 +26,25 @@ static void	put_pixel(int x, int y, int trgb, t_data *d)
 	}
 }
 
+static int	get_color(double i, int max_iter)
+{
+	double	t;
+	int		r;
+	int		g;
+	int		b;
+	
+	t = i / max_iter;
+	r = (int)(9 * (1 - t) * t * t * t * 255);
+	g = (int)(15 * (1 - t) * (1 - t) * t * t * 255);
+	b = (int)(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255);
+	return (r << 16 | g << 8 | b);
+}
+
 void	render_image(t_data *d)
 {
 	int	x;
 	int	y;
+	double iter;
 	int	trgb;
 	
 	y = -1;
@@ -68,9 +53,13 @@ void	render_image(t_data *d)
 		x = -1;
 		while (++x < WIDTH)
 		{
-			d->c.re = ((x - d->shift.re) * d->zoom / WIDTH);
-			d->c.im = ((y - d->shift.im) * d->zoom / HEIGHT);
-			trgb = render_pixel(d);
+			if (d->set == MANDELBROT)
+				iter = render_mandelbrot(x, y, d);
+			else if (d->set == JULIA)
+				iter = render_julia(x, y, d);
+			else if (d->set == BURNINGSHIP)
+				iter = render_burningship(x, y, d);
+			trgb = get_color(iter, d->max_iter);
 			put_pixel(x, y, trgb, d);
 		}
 	}

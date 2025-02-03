@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 15:17:47 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/31 21:16:59 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/02/02 10:05:35 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,39 +30,43 @@ static int key_handler(int key, t_data *d)
 	if (key == XK_Escape)
 		quit(d);
 	if (key == XK_w || key == XK_Up)
-		d->shift.im -= (0.5 * d->zoom);
+		d->shift.im -= (0.5);
 	if (key == XK_s || key == XK_Down)
-		d->shift.im += (0.5 * d->zoom);
+		d->shift.im += (0.5);
 	if (key == XK_a || key == XK_Left)
-		d->shift.re += (0.5 * d->zoom);
+		d->shift.re -= (0.5);
 	if (key == XK_d || key == XK_Right)
-		d->shift.re -= (0.5 * d->zoom);
+		d->shift.re += (0.5);
 	render_image(d);
 	return (0);
 }
 
 static int mouse_handler(int button, int x, int y, t_data *d)
 {
-	(void)x;
-	(void)y;
+    double mouse_re;
+    double mouse_im;
+    double zoom_factor;
 	
-	if (button == Button4)
-	{
-		printf("1here\n");
-		d->zoom *= 1.1;
-	}
-	else if (button == Button5)
-	{
-		printf("2here\n");
-		d->zoom *= 0.9;
-	}
+    mouse_re = d->min.re + (x * (d->max.re - d->min.re) / WIDTH);
+    mouse_im = d->min.im + (y * (d->max.im - d->min.im) / HEIGHT);
+    if (button == Button4)
+        zoom_factor = 0.7;
+    else if (button == Button5)
+        zoom_factor = 1.3;
+    else
+        return (0);
+    d->min.re = mouse_re + (d->min.re - mouse_re) * zoom_factor;
+    d->max.re = mouse_re + (d->max.re - mouse_re) * zoom_factor;
+    d->min.im = mouse_im + (d->min.im - mouse_im) * zoom_factor;
+    d->max.im = mouse_im + (d->max.im - mouse_im) * zoom_factor;
+	printf("%f -- %f -- %f -- %f\n", d->min.re, d->max.re, d->min.im, d->max.im);
 	render_image(d);
 	return (0);
 }
 
 void	events_setup(t_data *d)
 {
-	mlx_hook(d->window, DestroyAll, StructureNotifyMask, quit, d);
+	mlx_hook(d->window, ClientMessage, StructureNotifyMask, quit, d);
 	mlx_hook(d->window, KeyPress, KeyPressMask, key_handler, d);
 	mlx_hook(d->window, ButtonPress, ButtonPressMask, mouse_handler, d);
 }
