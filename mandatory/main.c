@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 01:57:11 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/02/02 04:47:43 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/02/05 00:35:48 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,14 @@ static void	mlx_setup(t_data *d)
 		free(d->connection);
 		exit(1);
 	}
-	d->addr = mlx_get_data_addr(d->image, &(d->bits_per_pixel), &(d->line_length), &(d->endian));
+	d->addr = mlx_get_data_addr(d->image, &(d->bits_per_pixel),
+			&(d->line_length), &(d->endian));
 }
 
-int	main(int argc, char **argv) 
+int	main(int argc, char **argv)
 {
 	t_data	data;
-	
+
 	init_data(&data);
 	init_set(&data, argc, argv);
 	if (data.set == NULL_SET)

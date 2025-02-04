@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:13:06 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/02/02 04:41:00 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/02/05 00:59:50 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 static void	error(char *message)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	while (message[len])
@@ -25,7 +25,7 @@ static void	error(char *message)
 	exit(1);
 }
 
-static double helper(char *str, double fraction, bool dot)
+static double	helper(char *str, double fraction, bool dot)
 {
 	double	res;
 
@@ -37,6 +37,7 @@ static double helper(char *str, double fraction, bool dot)
 			if (dot)
 				error("Wrong input for julia parameter");
 			dot = true;
+			str++;
 		}
 		if (dot)
 		{
@@ -44,7 +45,7 @@ static double helper(char *str, double fraction, bool dot)
 			res += (*str - '0') * fraction;
 		}
 		else
-			res = res * 10.0 + (*str - '0');
+			res += res * 10.0 + (*str - '0');
 		str++;
 	}
 	if (*str)
@@ -52,20 +53,19 @@ static double helper(char *str, double fraction, bool dot)
 	return (res);
 }
 
-double atod(char *str)
+double	atod(char *str)
 {
-	int		sign = 1;
+	int		sign;
 	double	res;
 
-	while (*str == 32 || (*str >= 9 && *str <= 13))
-		str++;
+	sign = 1;
 	if (*str == '+' || *str == '-')
 	{
 		if (*str == '-')
 			sign = -1;
 		str++;
 	}
-	res = helper(str, 1.0, 0);
+	res = helper(str, 1.0, false);
 	return (sign * res);
 }
 

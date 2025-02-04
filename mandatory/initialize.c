@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 04:27:40 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/02/04 00:17:40 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/02/05 00:59:56 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-void init_data(t_data *data)
+void	init_data(t_data *data)
 {
 	data->connection = NULL;
 	data->window = NULL;
@@ -42,7 +42,7 @@ void init_data(t_data *data)
 static void	init_mandelbrot(t_data *d)
 {
 	d->set = MANDELBROT;
-	d->max_iter = 40;
+	d->max_iter = DEFAULT_ITERATIONS;
 	d->max.re = 2.0;
 	d->min.re = -2.0;
 	d->max.im = 2.0;
@@ -52,26 +52,30 @@ static void	init_mandelbrot(t_data *d)
 	d->zoom = 1.0;
 }
 
-static void	init_burningship(t_data *d)
+static void	init_tricorn(t_data *d)
 {
-	d->set = BURNINGSHIP;
-	d->max.re = 1.5;
-	d->min.re = -2.5;
-	d->max.im = 2.5;
-	d->min.im = -1.5;
-	d->shift.re = WIDTH / 2.0;
-	d->shift.im = HEIGHT / 2.0;
+	d->set = TRICORN;
+	d->max_iter = DEFAULT_ITERATIONS;
+	d->max.re = 2.0;
+	d->min.re = -2.0;
+	d->max.im = 2.0;
+	d->min.im = -2.0;
+	d->shift.re = 0.0;
+	d->shift.im = 0.0;
+	d->zoom = 1.0;
 }
 
 static void	init_julia(t_data *d, double julia_re, double julia_im)
 {
 	d->set = JULIA;
-	d->max.re = 2.0;
-	d->min.re = -2.0;
-	d->max.im = 2.0;
-	d->min.im = -2.0;
-	d->shift.re = WIDTH / 2.0;
-	d->shift.im = HEIGHT / 2.0;
+	d->max_iter = DEFAULT_ITERATIONS;
+	d->max.re = 1.5;
+	d->min.re = -1.5;
+	d->max.im = 1.5;
+	d->min.im = -1.5;
+	d->shift.re = 0.0;
+	d->shift.im = 0.0;
+	d->zoom = 1.0;
 	if (julia_re > d->max.re || julia_re < d->min.re
 		|| julia_im > d->max.im || julia_im < d->min.im)
 	{
@@ -89,13 +93,13 @@ void	init_set(t_data *data, int argc, char **argv)
 		if (strcomp(argv[1], "mandelbrot"))
 			init_mandelbrot(data);
 		else if (strcomp(argv[1], "julia"))
-			init_julia(data, 0, 0);
-		else if (strcomp(argv[1], "burningship"))
-			init_burningship(data);
+			init_julia(data, -0.4, -0.59);
+		else if (strcomp(argv[1], "tricorn"))
+			init_tricorn(data);
 		return ;
 	}
 	if (argc == 4 && (strcomp(argv[1], "julia")))
-	{	
+	{
 		init_julia(data, atod(argv[2]), atod(argv[3]));
 		return ;
 	}
