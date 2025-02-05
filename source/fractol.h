@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 02:13:01 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/02/05 00:31:49 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/02/05 21:49:21 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ int		strcomp(char *str1, char *str2);
 double	atod(char *str);
 void	events_setup(t_data *d);
 void	render_image(t_data *d);
-int		render_mandelbrot(int x, int y, t_data *d);
-int		render_julia(int x, int y, t_data *d);
-int		render_tricorn(int x, int y, t_data *d);
+double		render_mandelbrot(int x, int y, t_data *d);
+double		render_julia(int x, int y, t_data *d);
+double		render_tricorn(int x, int y, t_data *d);
 
 #endif

@@ -2,16 +2,14 @@ CC				= cc
 CFLAGS			= -Wall -Wextra -Werror -I$(INC_DIR) -I$(MLX_DIR)
 
 NAME			= fractol
-BONUS_NAME		= fractol_bonus
 
 MLX_DIR			= minilibx
 MLX				= $(MLX_DIR)/libmlx.a
 MLXFLAGS		= -lmlx -lXext -lX11 -lm -lz
 
-MANDATORY_DIR	= mandatory
-BONUS_DIR		= bonus
+SOURCE_DIR	= source
 
-SRC				= $(wildcard $(MANDATORY_DIR)/*.c)
+SRC				= $(wildcard $(SOURCE_DIR)/*.c)
 OBJ				= $(SRC:.c=.o)
 
 SRC_BONUS		= $(wildcard $(BONUS_DIR)/*.c)
@@ -21,9 +19,6 @@ all: $(NAME)
 
 $(NAME): $(OBJ) $(MLX)
 	$(CC) $(CFLAGS) $(OBJ) -L$(MLX_DIR) $(MLXFLAGS) -o $(NAME)
-
-bonus: $(OBJ_BONUS) $(MLX)
-	$(CC) $(CFLAGS) $(OBJ_BONUS) -L$(MLX_DIR) $(MLXFLAGS) -o $(BONUS_NAME)
 
 $(MLX):
 	@make -C $(MLX_DIR)

@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 05:23:08 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/02/05 00:39:03 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/02/05 21:53:40 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ static t_complex	sum_complex(t_complex c1, t_complex c2)
 	return (res);
 }
 
-int	render_mandelbrot(int x, int y, t_data *d)
+double	render_mandelbrot(int x, int y, t_data *d)
 {
-	int	i;
-	int	mu;
-	int	sqrt_mag;
+	int		i;
+	double	mu;
+	double	sqrt_mag;
 
 	d->z.re = 0.0;
 	d->z.im = 0.0;
@@ -51,17 +51,17 @@ int	render_mandelbrot(int x, int y, t_data *d)
 	}
 	if (i < d->max_iter)
 	{
-		mu = log(log(sqrt_mag)) / log(4.0);
-		i = i + 1 - mu;
+		mu = log(log(fabs(sqrt_mag))) / log(4.0);
+		mu = i + 1 - mu;
 	}
-	return (i);
+	return (mu);
 }
 
-int	render_julia(int x, int y, t_data *d)
+double	render_julia(int x, int y, t_data *d)
 {
-	int	i;
-	int	mu;
-	int	sqrt_mag;
+	int		i;
+	double	mu;
+	double	sqrt_mag;
 
 	d->z.re = d->min.re + (x * (d->max.re - d->min.re) / WIDTH) + d->shift.re;
 	d->z.im = d->min.im + (y * (d->max.im - d->min.im) / HEIGHT) + d->shift.im;
@@ -74,17 +74,17 @@ int	render_julia(int x, int y, t_data *d)
 	}
 	if (i < d->max_iter)
 	{
-		mu = log(log(sqrt_mag) / 2.0) / log(2.0);
-		i = (double)i + 1 - mu;
+		mu = log(log(fabs(sqrt_mag)) / 2.0) / log(2.0);
+		mu = (double)i + 1 - mu;
 	}
-	return (i);
+	return (mu);
 }
 
-int	render_tricorn(int x, int y, t_data *d)
+double	render_tricorn(int x, int y, t_data *d)
 {
-	int	i;
-	int	sqrt_mag;
-	int	mu;
+	int		i;
+	double	sqrt_mag;
+	double	mu;
 
 	d->c.re = (d->min.re + (x * (d->max.re - d->min.re) / WIDTH) + d->shift.re);
 	d->c.im = (d->min.im + (y * (d->max.im - d->min.im) / HEIGHT)
@@ -102,8 +102,8 @@ int	render_tricorn(int x, int y, t_data *d)
 	}
 	if (i < d->max_iter)
 	{
-		mu = log(log(sqrt_mag) / 2.0) / log(2.0);
+		mu = log(log(fabs(sqrt_mag)) / 2.0) / log(2.0);
 		mu = (double)i + 1 - mu;
 	}
-	return (i);
+	return (mu);
 }
