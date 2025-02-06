@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   fractol_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 02:13:01 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/02/05 21:49:21 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/02/06 05:13:51 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#ifndef FRACTOL_BONUS_H
+# define FRACTOL_BONUS_H
 
 # define NULL_SET 0
 # define MANDELBROT 1
@@ -22,8 +22,6 @@
 # define HEIGHT 800
 
 # define DEFAULT_ITERATIONS 35
-
-# include <stdio.h>
 
 typedef struct s_complex
 {
@@ -41,7 +39,6 @@ typedef struct s_data
 	int			line_length;
 	int			endian;
 	int			set;
-	int			color;
 	int			max_iter;
 	double		zoom;
 	t_complex	z;
@@ -51,12 +48,12 @@ typedef struct s_data
 	t_complex	shift;
 }			t_data;
 
-void	init_data(t_data *data);
-void	init_set(t_data *data, int argc, char **argv);
-int		strcomp(char *str1, char *str2);
-double	atod(char *str);
-void	events_setup(t_data *d);
-void	render_image(t_data *d);
+void		init_data(t_data *data);
+void		init_set(t_data *data, int argc, char **argv);
+int			strcomp(char *str1, char *str2);
+double		atod(char *str);
+void		events_setup(t_data *d);
+void		render_image(t_data *d);
 double		render_mandelbrot(int x, int y, t_data *d);
 double		render_julia(int x, int y, t_data *d);
 double		render_tricorn(int x, int y, t_data *d);

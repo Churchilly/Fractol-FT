@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_sets.c                                      :+:      :+:    :+:   */
+/*   render_sets_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 05:23:08 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/02/05 21:53:40 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/02/06 00:29:54 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "fractol_bonus.h"
 #include <math.h>
 
 static t_complex	square_complex(t_complex c)
@@ -39,9 +39,8 @@ double	render_mandelbrot(int x, int y, t_data *d)
 
 	d->z.re = 0.0;
 	d->z.im = 0.0;
-	d->c.re = (d->min.re + (x * (d->max.re - d->min.re) / WIDTH) + d->shift.re);
-	d->c.im = (d->min.im + (y * (d->max.im - d->min.im) / HEIGHT)
-			+ d->shift.im);
+	d->c.re = d->min.re + (x * (d->max.re - d->min.re) / WIDTH) + d->shift.re;
+	d->c.im = d->min.im + (y * (d->max.im - d->min.im) / HEIGHT) + d->shift.im;
 	sqrt_mag = 0;
 	i = -1;
 	while (sqrt_mag < (4.0) && ++i < d->max_iter)
@@ -86,9 +85,8 @@ double	render_tricorn(int x, int y, t_data *d)
 	double	sqrt_mag;
 	double	mu;
 
-	d->c.re = (d->min.re + (x * (d->max.re - d->min.re) / WIDTH) + d->shift.re);
-	d->c.im = (d->min.im + (y * (d->max.im - d->min.im) / HEIGHT)
-			+ d->shift.im);
+	d->c.re = d->min.re + (x * (d->max.re - d->min.re) / WIDTH) + d->shift.re;
+	d->c.im = d->min.im + (y * (d->max.im - d->min.im) / HEIGHT) + d->shift.im;
 	d->z.re = 0;
 	d->z.im = 0;
 	i = -1;

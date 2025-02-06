@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 22:40:08 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/02/05 00:40:26 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/02/06 05:14:14 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "fractol_bonus.h"
 #include "../minilibx/mlx.h"
 
 static void	put_pixel(int x, int y, int trgb, t_data *d)

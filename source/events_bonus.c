@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   events.c                                           :+:      :+:    :+:   */
+/*   events_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 15:17:47 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/02/05 00:33:32 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/02/06 05:00:56 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <X11/X.h>
 #include <X11/keysym.h>
-#include "fractol.h"
+#include "fractol_bonus.h"
 #include "../minilibx/mlx.h"
 #include <stdlib.h>
 

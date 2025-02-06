@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 01:57:11 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/02/05 00:35:48 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/02/05 23:03:56 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
-#include "fractol.h"
+#include "fractol_bonus.h"
 #include "../minilibx/mlx.h"
 #include <stdbool.h>
 
@@ -51,6 +51,7 @@ int	main(int argc, char **argv)
 		write(1, "Usage: ./fractol Fractal-Set\n", 30);
 		write(1, "                 mandelbrot\n", 29);
 		write(1, "                 julia <real> <imaginary>\n", 43);
+		write(1, "                 tricorn\n", 26);
 		exit(1);
 	}
 	mlx_setup(&data);

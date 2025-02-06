@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialize_utils.c                                 :+:      :+:    :+:   */
+/*   initialize_utils_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:13:06 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/02/05 00:59:50 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/02/06 05:07:01 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ static void	error(char *message)
 	while (message[len])
 		len++;
 	write(2, message, len);
+	write(1, "Julia Parameters must be double values.\n", 41);
+	write(1, "Usage: ./fractol Fractal-Set\n", 30);
+	write(1, "                 mandelbrot\n", 29);
+	write(1, "                 julia <real> <imaginary>\n", 43);
 	exit(1);
 }
 

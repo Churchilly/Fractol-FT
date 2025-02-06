@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialize.c                                       :+:      :+:    :+:   */
+/*   initialize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 04:27:40 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/02/05 00:59:56 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/02/06 05:06:41 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "fractol_bonus.h"
 #include <unistd.h>
 #include <stdlib.h>
 
@@ -24,7 +24,6 @@ void	init_data(t_data *data)
 	data->line_length = 0;
 	data->endian = 0;
 	data->set = NULL_SET;
-	data->color = 0;
 	data->max_iter = 0;
 	data->zoom = 0.0;
 	data->z.re = 0.0;
@@ -80,6 +79,10 @@ static void	init_julia(t_data *d, double julia_re, double julia_im)
 		|| julia_im > d->max.im || julia_im < d->min.im)
 	{
 		write(2, "Error: Julia parameters out of range\n", 38);
+		write(1, "Julia Parameters must be in (-2.0, 2.0)\n", 41);
+		write(1, "Usage: ./fractol Fractal-Set\n", 30);
+		write(1, "                 mandelbrot\n", 29);
+		write(1, "                 julia <real> <imaginary>\n", 43);
 		exit(1);
 	}
 	d->c.re = julia_re;
@@ -103,8 +106,4 @@ void	init_set(t_data *data, int argc, char **argv)
 		init_julia(data, atod(argv[2]), atod(argv[3]));
 		return ;
 	}
-	write(1, "Usage: ./fractol Fractal-Set\n", 30);
-	write(1, "                 mandelbrot\n", 29);
-	write(1, "                 julia <real> <imaginary>\n", 43);
-	exit(1);
 }
