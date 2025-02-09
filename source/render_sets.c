@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_sets_bonus.c                                :+:      :+:    :+:   */
+/*   render_sets.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 05:23:08 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/02/06 00:29:54 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/02/10 00:32:27 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol_bonus.h"
+#include "fractol.h"
 #include <math.h>
 
 static t_complex	square_complex(t_complex c)

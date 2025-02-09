@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_bonus.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 01:57:11 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/02/05 23:03:56 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/02/10 00:32:32 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
-#include "fractol_bonus.h"
+#include "fractol.h"
 #include "../minilibx/mlx.h"
 #include <stdbool.h>
 

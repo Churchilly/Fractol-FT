@@ -5,7 +5,7 @@ NAME			= fractol
 
 MLX_DIR			= minilibx
 MLX				= $(MLX_DIR)/libmlx.a
-MLXFLAGS		= -lmlx -lXext -lX11 -lm -lz
+MLXFLAGS		= -lmlx -lXext -lX11 -lm -lz -lpthread
 
 SOURCE_DIR	= source
 

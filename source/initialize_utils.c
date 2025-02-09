@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialize_utils_bonus.c                           :+:      :+:    :+:   */
+/*   initialize_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:13:06 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/02/06 05:07:01 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/02/10 02:41:14 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,21 +39,23 @@ static double	helper(char *str, double fraction, bool dot)
 		if (*str == '.')
 		{
 			if (dot)
-				error("Wrong input for julia parameter");
+				error("Error: Wrong input for julia parameter\n");
 			dot = true;
 			str++;
 		}
-		if (dot)
+		if (dot && *str <= '9' && *str >= '0')
 		{
 			fraction /= 10.0;
 			res += (*str - '0') * fraction;
 		}
-		else
+		else if (!dot && *str <= '9' && *str >= '0')
 			res += res * 10.0 + (*str - '0');
+		else
+			error("Error: Wrong input for julia parameter\n");
 		str++;
 	}
 	if (*str)
-		error("Wrong input for julia parameter");
+		error("Error: Wrong input for julia parameter\n");
 	return (res);
 }
 
@@ -84,5 +86,7 @@ int	strcomp(char *str1, char *str2)
 		str1++;
 		str2++;
 	}
+	if ((!(*str2) && *str1) || (!(*str1) && *str2))
+		return (0);
 	return (1);
 }

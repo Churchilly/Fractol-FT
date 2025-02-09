@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol_bonus.h                                    :+:      :+:    :+:   */
+/*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 02:13:01 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/02/06 05:13:51 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/02/10 02:28:35 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@
 # define HEIGHT 800
 
 # define DEFAULT_ITERATIONS 35
-
+# define DEFAULT_THREADS 8
+# include <stdio.h>
+# include <unistd.h>
 typedef struct s_complex
 {
 	double	re;
@@ -47,6 +49,13 @@ typedef struct s_data
 	t_complex	max;
 	t_complex	shift;
 }			t_data;
+
+typedef struct s_threads_data
+{
+	int	start_y;
+	int	end_y;
+	t_data	d;
+}		t_threads_data;
 
 void		init_data(t_data *data);
 void		init_set(t_data *data, int argc, char **argv);
